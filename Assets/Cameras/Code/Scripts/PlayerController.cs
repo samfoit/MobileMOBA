@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(Camera.main.ScreenToViewportPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y)));
         CheckInput();
 
         if (tap && canMove)

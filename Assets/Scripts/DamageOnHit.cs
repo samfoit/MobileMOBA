@@ -7,16 +7,26 @@ public class DamageOnHit : MonoBehaviour
     public PlayerController player;
     private float damage;
 
+    private Character playerStats;
+    private Character enemyStats;
+
     private void Start()
     {
-        damage = player.GetComponent<Character>().strength;
+        playerStats = GetComponentInParent<Character>();
+        damage = playerStats.strength;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<Character>() != null)
         {
-            other.GetComponent<Character>().TakeDamage(damage);
+            enemyStats = other.GetComponent<Character>();
+
+            enemyStats.TakeDamage(damage);
+            if (enemyStats.death)
+            {
+                player.GetComponent<Character>().GainExp(enemyStats.expToGive);
+            }
         }
     }
 }
