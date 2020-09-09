@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Moves and animates the player based off user input
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     public float speed = 3f;
@@ -35,15 +38,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // This function checks whether the input is a swipe, tap, or drag
         CheckInput();
 
+        // If the input was a tap, player attacks
         if (tap && canMove)
         {
             Attack();
             tap = false;
         }
 
-
+        // If the input as a drag, moves the player
         if (drag && canMove)
         {
             if (Input.GetMouseButton(0))
@@ -58,7 +63,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-
+        // Animates the attack
         if (attack)
         {
             animator.SetTrigger("attack");
@@ -66,6 +71,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks the position of the player's input and how long they have kept their finger on screen
+    /// Returns with the correct input 
+    /// </summary>
     private void CheckInput()
     {
 
@@ -103,6 +112,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// In order to properly setup attacks, you must fill in the attacks[] array with the total number of attacks the player has
+    /// ie if the samurai has a three hit combo, go into the editor, click the player, find the attacks array and put "3" for size
+    /// This function loops through a series of attack string triggers !*(attack animations must be named "attack1", "attack2", ect)*!
+    /// And creates the comboing effect shown in this game
+    /// </summary>
     private void Attack()
     {
         string attack = "attack1";
@@ -127,26 +142,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void DealDamage()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 10f))
-        {
-            if (hit.collider.tag == "Enemy")
-            {
-                hit.collider.gameObject.GetComponent<Character>().TakeDamage(stats.strength);
-                if (hit.collider.gameObject.GetComponent<Character>().death)
-                {
-                    stats.GainExp(hit.collider.gameObject.GetComponent<Character>().expToGive);
-                }
-            }
-            else
-            {
-                return;
-            }
-        }
-    }
-
+    // Moves the player and animates them in the running animation
     private void MovePlayer()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
@@ -154,6 +150,11 @@ public class PlayerController : MonoBehaviour
         GetComponent<Animator>().SetBool("isRunning", true);
     }
 
+    /// <summary>
+    /// Takes the user input and gets the angle to rotate the player based off drag
+    /// ie if user drags up the angle will be 0 degrees
+    /// </summary>
+    /// <returns>Angle of swipe</returns>
     private Vector3 GetInputRotation()
     {
         return new Vector3(0, Mathf.Atan2(currentPos.x - startPos.x, currentPos.y - startPos.y) * 180 / Mathf.PI, 0);

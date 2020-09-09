@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Attached to the player, gives him exp to level him up on the start of the game
+/// </summary>
 public class Player : Character
 {
     // Start is called before the first frame update

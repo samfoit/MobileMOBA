@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Positions the camera to create the top down affect
+/// </summary>
 public class TopDownCamera : MonoBehaviour
 {
     public Transform target;

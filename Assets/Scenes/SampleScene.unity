@@ -9230,7 +9230,7 @@ MonoBehaviour:
   maxMp: 50
   currentExp: 0
   expToNextLevel: 100
-  level: 1
+  level: 0
   expToGive: 100
   levelGain: 0
   death: 0

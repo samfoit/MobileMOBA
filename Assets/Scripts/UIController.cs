@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Creates the line and dot on screen to show player input
+/// </summary>
 public class UIController : MonoBehaviour
 {
     [SerializeField] GameObject controller;
@@ -26,6 +29,8 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Gets the starting input from the player
+        // Called when finger first touches the screen
         if (Input.GetMouseButtonDown(0))
         {
             startPos = Input.mousePosition;
@@ -33,6 +38,9 @@ public class UIController : MonoBehaviour
             line.transform.position = controller.transform.position;
             lineRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
         }
+        // Gets the curent input from player
+        // Called every frame
+        // Rotates the line and streches it to meet the player's finger
         if (Input.GetMouseButton(0))
         {
             currentPos = Input.mousePosition;
@@ -48,6 +56,7 @@ public class UIController : MonoBehaviour
             line.gameObject.SetActive(true);
         }
 
+        // Hides the line/circle when finger leaves screen
         if (Input.GetMouseButtonUp(0))
         {
             controller.SetActive(false);
