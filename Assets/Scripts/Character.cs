@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class Character : MonoBehaviour
 {
+    public HealthBar healthBar;
+
     // HP
     // TODO: Change to array
     public float currentHp = 100f;
@@ -40,6 +42,8 @@ public class Character : MonoBehaviour
     {
         currentHp = maxHp;
         currentMp = maxMp;
+
+        healthBar.SetMaxHealth(maxHp);
     }
 
     /// <summary>
@@ -49,6 +53,7 @@ public class Character : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHp -= damage;
+        healthBar.SetHealth(currentHp);
         if(currentHp <= 0)
         {
             death = true;
