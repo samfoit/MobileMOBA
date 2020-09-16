@@ -13,4 +13,11 @@ public class Player : Character
         GainExp(100);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            GainExp(100);
+        }
+    }
 }

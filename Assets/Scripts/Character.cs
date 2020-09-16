@@ -10,18 +10,21 @@ public class Character : MonoBehaviour
     public HealthBar healthBar;
 
     // HP
-    // TODO: Change to array
     public float currentHp = 100f;
-    public float maxHp = 100f;
+    //Levels:                     0    1     2     3     4     5     6     7     8     9     10
+    public float[] maxHpValues = {0f, 100f, 150f, 200f, 250f, 300f, 350f, 400f, 450f, 500f, 550f};
+    public float maxHp;
 
     // Damage
-    // TODO: Change to array
-    public float strength = 10f;
+    //Levels:                        0    1    2    3    4    5    6    7    8    9    10
+    public float[] strengthValues = {0f, 10f, 20f, 30f, 40f, 50f, 60f, 70f, 80f, 90f, 100f};
+    public float strength;
 
     // Mana
-    // TODO: Change to array
     public float currentMp = 50f;
-    public float maxMp = 50f;
+    //Levels:                     0    1    2    3     4     5     6     7     8     9     10
+    public float[] maxMpValues = {0f, 50f, 75f, 100f, 125f, 150f, 175f, 200f, 225f, 250f, 275f};
+    public float maxMp;
 
     // Exp
     // TODO: Change to array
@@ -40,6 +43,9 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
+        maxHp = maxHpValues[0];
+        strength = strengthValues[0];
+        maxMp = maxMpValues[0];
         currentHp = maxHp;
         currentMp = maxMp;
 
@@ -70,12 +76,26 @@ public class Character : MonoBehaviour
     {
         currentExp += expToGain;
 
-        if(currentExp >= expToNextLevel)
+        if(currentExp >= expToNextLevel && level < 10)
         {
             levelGain = true;
             level++;
             currentExp = 0;
             expToNextLevel *= 2;
+            LevelUp(levelGain);
+        }
+    }
+
+    //Wally WIP code to level up
+    public void LevelUp(bool levelGain)
+    {
+        if (levelGain)
+        {
+            maxHp = maxHpValues[level];
+            strength = strengthValues[level];
+            maxMp = maxMpValues[level];
+
+            levelGain = false;
         }
     }
 }
