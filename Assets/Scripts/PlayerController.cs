@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 startPos;
     private Vector2 currentPos;
 
-    public bool tap, drag, swipe;
+    public bool tap, drag, swipe, hold;
 
     public bool canMove = true;
 
@@ -94,9 +94,20 @@ public class PlayerController : MonoBehaviour
 
             if (Time.time - startTime > MAX_START_TIME || startPos != currentPos)
             {
-                drag = true;
-                tap = false;
-                swipe = false;
+                if (startPos == currentPos)
+                {
+                    hold = true;
+                    drag = false;
+                    tap = false;
+                    swipe = false;
+                }
+                else
+                {
+                    drag = true;
+                    tap = false;
+                    swipe = false;
+                    hold = false;
+                }
             }
         }
         if (Input.GetMouseButtonUp(0))
@@ -106,17 +117,14 @@ public class PlayerController : MonoBehaviour
                 swipe = true;
                 tap = false;
                 drag = false;
+                hold = false;
             }
             else if (Time.time - startTime < MAX_START_TIME && currentPos == startPos)
             {
                 tap = true;
                 drag = false;
                 swipe = false;
-            }
-            else
-            {
-                Debug.Log("Somehow neither a tap, drag, or a swipe?");
-                return;
+                hold = false;
             }
         }
     }
