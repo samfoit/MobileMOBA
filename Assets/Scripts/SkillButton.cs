@@ -28,7 +28,11 @@ public class SkillButton : MonoBehaviour
             {
                 levelCounter[i].color = Color.white;
             }
-            UIManager.playerStats.levelGain = false;
+            UIManager.playerStats.levelupCounter--;
+            if (UIManager.playerStats.levelupCounter <= 0)
+            {
+                UIManager.playerStats.levelGain = false;
+            }
         }
     }
 }

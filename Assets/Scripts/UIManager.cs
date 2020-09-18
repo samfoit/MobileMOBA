@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
     private void OnLevelGain()
     {
         // Checks if level gain bool is true on player stats
-        if (playerStats.levelGain)
+        if (playerStats.levelupCounter > 0)
         {
             // Turns every skill button green and allows you to level them up
             for (int i = 0; i < skillButtons.Length; i++)

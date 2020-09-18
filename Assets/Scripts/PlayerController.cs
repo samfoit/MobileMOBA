@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 /// <summary>
 /// Moves and animates the player based off user input
@@ -14,8 +13,6 @@ public class PlayerController : MonoBehaviour
 
     float startTime;
     public const float MAX_START_TIME = 0.35f;
-
-    Character stats;
 
     private bool attack = false;
 
@@ -34,7 +31,6 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
-        stats = GetComponent<Character>();
     }
 
     void Update()
@@ -50,7 +46,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // If the input as a drag, moves the player
-        if (drag && canMove)
+        if (drag || swipe && canMove)
         {
             if (Input.GetMouseButton(0))
             {
@@ -78,7 +74,6 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void CheckInput()
     {
-
         if (Input.GetMouseButtonDown(0))
         {
             startTime = Time.time;
@@ -101,14 +96,27 @@ public class PlayerController : MonoBehaviour
             {
                 drag = true;
                 tap = false;
+                swipe = false;
             }
         }
         if (Input.GetMouseButtonUp(0))
         {
-            if (Time.time - startTime < MAX_START_TIME)
+            if (Time.time - startTime < 0.7 && currentPos != startPos)
+            {
+                swipe = true;
+                tap = false;
+                drag = false;
+            }
+            else if (Time.time - startTime < MAX_START_TIME && currentPos == startPos)
             {
                 tap = true;
                 drag = false;
+                swipe = false;
+            }
+            else
+            {
+                Debug.Log("Somehow neither a tap, drag, or a swipe?");
+                return;
             }
         }
     }

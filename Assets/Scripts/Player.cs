@@ -12,4 +12,13 @@ public class Player : Character
     {
         GainExp(100);
     }
+
+    private void Update()
+    {
+        // Remember to remove
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            GainExp(100);
+        }
+    }
 }

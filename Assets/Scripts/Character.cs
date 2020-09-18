@@ -40,6 +40,7 @@ public class Character : MonoBehaviour
     // Bools checking if character has died or leveled up (used in other scripts)
     public bool levelGain = false;
     public bool death = false;
+    public int levelupCounter = 0;
 
     private void Start()
     {
@@ -94,6 +95,7 @@ public class Character : MonoBehaviour
             maxHp = maxHpValues[level];
             strength = strengthValues[level];
             maxMp = maxMpValues[level];
+            levelupCounter++;
 
             levelGain = false;
         }
