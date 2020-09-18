@@ -43,9 +43,9 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-        maxHp = maxHpValues[0];
-        strength = strengthValues[0];
-        maxMp = maxMpValues[0];
+        maxHp = maxHpValues[level];
+        strength = strengthValues[level];
+        maxMp = maxMpValues[level];
         currentHp = maxHp;
         currentMp = maxMp;
 

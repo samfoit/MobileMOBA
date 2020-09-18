@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     public static int click = 0;
     public int[] attacks;
+    private bool isAttacking = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -44,7 +45,7 @@ public class PlayerController : MonoBehaviour
         // If the input was a tap, player attacks
         if (tap && canMove)
         {
-            Attack();
+            CheckAttack();
             tap = false;
         }
 
@@ -112,14 +113,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void CheckAttack()
+    {
+        if (!isAttacking)
+        {
+            StartCoroutine(Attack());
+        }
+        else
+        {
+            return;
+        }
+    }
+
     /// <summary>
     /// In order to properly setup attacks, you must fill in the attacks[] array with the total number of attacks the player has
     /// ie if the samurai has a three hit combo, go into the editor, click the player, find the attacks array and put "3" for size
     /// This function loops through a series of attack string triggers !*(attack animations must be named "attack1", "attack2", ect)*!
     /// And creates the comboing effect shown in this game
     /// </summary>
-    private void Attack()
+    IEnumerator Attack()
     {
+        isAttacking = true;
         string attack = "attack1";
 
         if (click == 0)
@@ -140,6 +154,9 @@ public class PlayerController : MonoBehaviour
             attack = "attack1";
             animator.SetTrigger(attack);
         }
+
+        yield return new WaitForSeconds(0.9f);
+        isAttacking = false;
     }
 
     // Moves the player and animates them in the running animation
