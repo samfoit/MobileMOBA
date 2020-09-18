@@ -7,6 +7,18 @@ public class HealthBar : MonoBehaviour
 {
 
     public Slider slider;
+    public Transform enemy;
+    private RectTransform canvasTransform;
+
+    private void Start()
+    {
+        canvasTransform = GetComponent<RectTransform>();
+    }
+
+    private void Update()
+    {
+        canvasTransform.SetPositionAndRotation(new Vector3(enemy.transform.position.x, canvasTransform.position.y, enemy.transform.position.z), Quaternion.AngleAxis(180 - enemy.rotation.y, Vector3.forward));
+    }
 
     public void SetHealth(float health)
     {
