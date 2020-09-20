@@ -53,11 +53,6 @@ public class PlayerController : MonoBehaviour
                 transform.eulerAngles = GetInputRotation();
                 MovePlayer();
             }
-            if (Input.GetMouseButtonUp(0))
-            {
-                animator.SetBool("isRunning", false);
-                drag = false;
-            }
         }
 
         // Animates the attack
@@ -65,6 +60,11 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("attack");
             attack = false;
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            animator.SetBool("isRunning", false);
         }
     }
 
