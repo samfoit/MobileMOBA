@@ -17,7 +17,6 @@ public class DamageOnHit : MonoBehaviour
     {
         // Finds player stats so we know how much damage to do
         playerStats = GetComponentInParent<Character>();
-        damage = playerStats.strength;
     }
 
     private void OnTriggerExit(Collider other)
@@ -26,6 +25,8 @@ public class DamageOnHit : MonoBehaviour
         // If it does, damage them
         if (other.GetComponent<Character>() != null)
         {
+            damage = playerStats.strength;
+
             enemyStats = other.GetComponent<Character>();
 
             enemyStats.TakeDamage(damage);
