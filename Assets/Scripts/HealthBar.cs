@@ -17,7 +17,8 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-        canvasTransform.SetPositionAndRotation(new Vector3(enemy.transform.position.x, canvasTransform.position.y, enemy.transform.position.z), Quaternion.AngleAxis(180 - enemy.rotation.y, Vector3.forward));
+        canvasTransform.SetPositionAndRotation(new Vector3(enemy.transform.position.x, canvasTransform.position.y,
+         canvasTransform.position.z), Quaternion.Euler(-65, 180-enemy.rotation.y, 0));
     }
 
     public void SetHealth(float health)
