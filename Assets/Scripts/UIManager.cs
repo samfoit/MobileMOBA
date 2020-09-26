@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour
 
     public GameObject[] skillButtons;
 
+    public Animator[] animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,20 +47,22 @@ public class UIManager : MonoBehaviour
         // Checks if level gain bool is true on player stats
         if (playerStats.levelupCounter > 0)
         {
+            
             // Turns every skill button green and allows you to level them up
             for (int i = 0; i < skillButtons.Length; i++)
             {
-                skillButtons[i].GetComponent<Image>().color = Color.green;
+                animator[i].SetBool("levelBool", true);
                 skillButtons[i].GetComponent<SkillButton>().isUpgradable = true;
             }
         }
         // If player hasn't leveled up buttons should look normal
         if (!playerStats.levelGain)
         {
+            
             // Turns every skill button back to normal
             for (int i = 0; i < skillButtons.Length; i++)
             {
-                skillButtons[i].GetComponent<Image>().color = Color.white;
+                animator[i].SetBool("levelBool", false);
                 skillButtons[i].GetComponent<SkillButton>().isUpgradable = false;
             }
         }
