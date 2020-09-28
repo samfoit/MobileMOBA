@@ -27,6 +27,12 @@ public class PlayerController : MonoBehaviour
     public int[] attacks;
     private bool isAttacking = false;
 
+    private bool chasing = false;
+
+    [SerializeField] private GameObject Player;
+    [SerializeField] private GameObject enemy;
+    [SerializeField] private string enemyTag = "Enemy";
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -66,6 +72,14 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isRunning", false);
         }
+
+        if (chasing)
+        {
+            AttackPhase(Player.transform.position, enemy.transform.position);
+        }
+        
+
+
     }
 
     /// <summary>
@@ -173,6 +187,58 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(0.9f);
         isAttacking = false;
+    }
+
+    public void ActivateAttackPhase()
+    {
+        chasing = true;
+    }
+    
+    public void AttackPhase(Vector3 Player, Vector3 enemy)
+    {
+        float distance = Vector3.Distance(Player, enemy);
+
+        if (distance > 5.0f)
+        {
+            MoveTowardsEnemy(Player, enemy);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
+            CheckAttack();
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out hit, 100.0f))
+                {
+                    if (hit.transform != null)
+                    {
+                        if (hit.transform.tag != enemyTag)
+                        {
+                            animator.SetBool("isRunning", false);
+                            chasing = false;
+                        }
+                    }
+                }
+            }
+            
+        }
+
+
+    }
+
+    private void MoveTowardsEnemy(Vector3 Player, Vector3 Enemy)
+    {
+        float step = speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(Player, Enemy, step);
+        GetComponent<Animator>().SetBool("isRunning", true);
+        transform.LookAt(Enemy);
     }
 
     // Moves the player and animates them in the running animation

@@ -87,7 +87,6 @@ public class Character : MonoBehaviour
         }
     }
 
-    //Wally WIP code to level up
     public void LevelUp(bool levelGain)
     {
         if (levelGain)
