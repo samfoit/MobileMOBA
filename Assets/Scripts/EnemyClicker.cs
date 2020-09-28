@@ -6,8 +6,7 @@ public class EnemyClicker : MonoBehaviour
 {
     // Update is called once per frame
     [SerializeField] private string enemyTag = "Enemy";
-    [SerializeField] private PlayerController player;
-    [SerializeField] private GameObject Player;
+    [SerializeField] private PlayerController playerController;
 
 
     void Update()
@@ -24,7 +23,7 @@ public class EnemyClicker : MonoBehaviour
                 {
                     if (hit.transform.tag == enemyTag)
                     {
-                        player.ActivateAttackPhase();
+                        playerController.ActivateAttackPhase();
                     }
                 }
             }
