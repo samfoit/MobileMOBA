@@ -2319,6 +2319,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2407,6 +2408,25 @@ MonoBehaviour:
   height: 40
   distance: 16
   angle: 0
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce9ecdea94f15e24992b726373b9b652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTag: Enemy
+  playerController: {fileID: 4317887644351969010}
+--- !u!1 &983867687 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5379077046792763431, guid: a46435b722f2e42e5b6128bcb2afd05c, type: 3}
+  m_PrefabInstance: {fileID: 7046797429483287402}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1000401448
 GameObject:
   m_ObjectHideFlags: 0
@@ -10120,6 +10140,9 @@ MonoBehaviour:
   hold: 0
   canMove: 1
   attacks: 000000000000000000000000
+  Player: {fileID: 4317887644351969008}
+  enemy: {fileID: 983867687}
+  enemyTag: Enemy
 --- !u!136 &4317887644351969011
 CapsuleCollider:
   m_ObjectHideFlags: 0
