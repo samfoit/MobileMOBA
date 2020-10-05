@@ -8,6 +8,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public HealthBar healthBar;
+    public ParticleSystem levelParticles;
 
     // HP
     public float currentHp = 100f;
@@ -84,6 +85,7 @@ public class Character : MonoBehaviour
             currentExp = 0;
             expToNextLevel *= 2;
             LevelUp(levelGain);
+            levelParticles.Play();
         }
     }
 

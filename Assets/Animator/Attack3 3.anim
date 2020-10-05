@@ -83580,7 +83580,21 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.31666666
-    functionName: DealDamage
+    functionName: EnableCollider
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5
+    functionName: PlaySlashFX
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 2
+    messageOptions: 0
+  - time: 0.7
+    functionName: DisableCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
