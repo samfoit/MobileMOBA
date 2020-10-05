@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public int[] attacks;
     private bool isAttacking = false;
 
-    private bool chasing = false;
+    public bool chasing = false;
 
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject enemy;
@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isRunning", false);
         }
 
-        if (chasing)
+        if (chasing && enemy != null)
         {
             AttackPhase(Player.transform.position, enemy.transform.position);
         }
