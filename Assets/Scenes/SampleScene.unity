@@ -24735,11 +24735,13 @@ GameObject:
   - component: {fileID: 3506025113891236938}
   - component: {fileID: 4317887644351969009}
   - component: {fileID: 4317887644351969010}
+  - component: {fileID: 4317887644351969017}
   - component: {fileID: 4317887644351969011}
   - component: {fileID: 4317887644351969012}
   - component: {fileID: 4317887644351969013}
   - component: {fileID: 4317887644351969014}
   - component: {fileID: 4317887644351969015}
+  - component: {fileID: 4317887644351969016}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -24785,6 +24787,7 @@ MonoBehaviour:
   hold: 0
   canMove: 1
   attacks: 000000000000000000000000
+  chasing: 0
   Player: {fileID: 4317887644351969008}
   enemy: {fileID: 983867687}
   enemyTag: Enemy
@@ -24892,7 +24895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6146ec0ca1a4cfabcec80bd4af83bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponCollider: {fileID: 4667307073156695635}
+  weaponCollider: {fileID: 0}
 --- !u!114 &4317887644351969015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24909,6 +24912,33 @@ MonoBehaviour:
   - {fileID: 846772736}
   - {fileID: 361385127}
   - {fileID: 917853411}
+--- !u!114 &4317887644351969016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4317887644351969008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec60869993ab4b96b693512ef6e1cd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 4317887644351969010}
+  enemies: []
+--- !u!65 &4317887644351969017
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4317887644351969008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.0000002, z: 10.605431}
+  m_Center: {x: 0, y: 5, z: 7.728405}
 --- !u!4 &4565646536671374813
 Transform:
   m_ObjectHideFlags: 0
@@ -24950,8 +24980,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5444372156070501608}
-  - component: {fileID: 4667307073156695635}
-  - component: {fileID: 4667307073156695636}
   m_Layer: 0
   m_Name: blacksword
   m_TagString: Untagged
@@ -24959,32 +24987,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &4667307073156695635
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4667307073156695634}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.7425587, y: 14.208278, z: 1.0973202}
-  m_Center: {x: 0.07614227, y: 4.9526315, z: 0.57494533}
---- !u!114 &4667307073156695636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4667307073156695634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ec60869993ab4b96b693512ef6e1cd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 4317887644351969010}
 --- !u!4 &4762362038174785375
 Transform:
   m_ObjectHideFlags: 0
