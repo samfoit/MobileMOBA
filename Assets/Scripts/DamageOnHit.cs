@@ -12,6 +12,7 @@ public class DamageOnHit : MonoBehaviour
 
     private Character playerStats;
     private Character enemyStats;
+    public List<Character> enemies;
 
     private void Start()
     {
@@ -19,22 +20,34 @@ public class DamageOnHit : MonoBehaviour
         playerStats = GetComponentInParent<Character>();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponent<Character>() != null)
+        {
+            enemies.Add(other.GetComponent<Character>());
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
-        // Checks if weapon has passed through an enemy
-        // If it does, damage them
-        if (other.GetComponent<Character>() != null)
+        enemies.Remove(other.GetComponent<Character>());
+    }
+
+    public void DealDamage()
+    {
+
+        for (int i = 0; i < enemies.Count; i++)
         {
             damage = playerStats.strength;
 
-            enemyStats = other.GetComponent<Character>();
-
-            enemyStats.TakeDamage(damage);
+            enemies[i].TakeDamage(damage);
 
             // If the attack kills them, reward the player with exp
-            if (enemyStats.death)
+            if (enemies[i].death)
             {
-                player.GetComponent<Character>().GainExp(enemyStats.expToGive);
+                player.gameObject.GetComponent<Character>().GainExp(enemies[i].expToGive);
+                enemies.Remove(enemies[i]);
+                player.chasing = false;
+
             }
         }
     }
