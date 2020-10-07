@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
 
     public bool chasing = false;
 
+    private Abilities abilities;
+
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject enemy;
     [SerializeField] private string enemyTag = "Enemy";
@@ -128,6 +130,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Time.time - startTime < 0.7 && currentPos != startPos)
             {
+                Debug.Log("Swiped!");
                 swipe = true;
                 tap = false;
                 drag = false;
