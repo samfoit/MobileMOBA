@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour
 
     public GameObject[] skillButtons;
 
+    public GameObject[] levelUpAni;
+
     public Animator[] animator;
 
     // Start is called before the first frame update
@@ -51,6 +53,7 @@ public class UIManager : MonoBehaviour
             // Turns every skill button green and allows you to level them up
             for (int i = 0; i < skillButtons.Length; i++)
             {
+                levelUpAni[i].SetActive(true);
                 animator[i].SetBool("levelBool", true);
                 skillButtons[i].GetComponent<SkillButton>().isUpgradable = true;
             }
@@ -62,6 +65,7 @@ public class UIManager : MonoBehaviour
             // Turns every skill button back to normal
             for (int i = 0; i < skillButtons.Length; i++)
             {
+                levelUpAni[i].SetActive(false);
                 animator[i].SetBool("levelBool", false);
                 skillButtons[i].GetComponent<SkillButton>().isUpgradable = false;
             }

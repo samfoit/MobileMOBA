@@ -61,7 +61,9 @@ public class Character : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHp -= damage;
-        healthBar.SetHealth(currentHp);
+        if (healthBar != null){
+            healthBar.SetHealth(currentHp);
+        }
         if(currentHp <= 0)
         {
             death = true;

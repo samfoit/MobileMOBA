@@ -11,7 +11,7 @@ public class DamageOnHit : MonoBehaviour
     private float damage;
 
     private Character playerStats;
-    private Character enemyStats;
+    
     public List<Character> enemies;
 
     private void Start()
