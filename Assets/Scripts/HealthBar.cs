@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,10 +10,13 @@ public class HealthBar : MonoBehaviour
     public Slider slider;
     public Transform enemy;
     private RectTransform canvasTransform;
-
+    private Character stats;
+    public Text levelText;
     private void Start()
     {
         canvasTransform = GetComponent<RectTransform>();
+        stats = GetComponentInParent<Character>();
+        levelText.text = stats.level.ToString();
     }
 
     private void Update()
@@ -31,4 +35,6 @@ public class HealthBar : MonoBehaviour
         slider.maxValue = health;
         slider.value = health;
     }
+
+    
 }
