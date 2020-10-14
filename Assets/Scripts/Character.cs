@@ -9,6 +9,9 @@ public class Character : MonoBehaviour
 {
     public HealthBar healthBar;
     public ParticleSystem levelParticles;
+    public EnemySpawner spawner;
+    public bool player;
+    public bool enemy;
 
     // HP
     public float currentHp = 100f;
@@ -67,7 +70,13 @@ public class Character : MonoBehaviour
         if(currentHp <= 0)
         {
             death = true;
+            if (enemy)
+            {
+                spawner.Respawn();
+            }
+          
             Destroy(gameObject);
+
         }
     }
 
