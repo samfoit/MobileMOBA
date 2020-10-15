@@ -144,7 +144,6 @@ MonoBehaviour:
   drag: 0
   swipe: 0
   hold: 0
-  canMove: 1
   attacks: 000000000000000000000000
   chasing: 0
   Player: {fileID: 203093948839369198}
@@ -208,7 +207,9 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   levelParticles: {fileID: 4124663054272207117}
   spawner: {fileID: 0}
-  currentHp: 100
+  player: 0
+  enemy: 0
+  currentHp: 40
   maxHpValues:
   - 0
   - 100

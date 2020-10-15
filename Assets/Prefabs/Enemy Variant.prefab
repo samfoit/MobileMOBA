@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa753a6540db04cd2853165f7c331407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLocation: {fileID: 0}
-  player: {fileID: 0}
+  playerLocation: {fileID: 691962740715701076, guid: bae6653ab044545ba8618c287cf6dc33, type: 3}
+  player: {fileID: 203093948839369195, guid: bae6653ab044545ba8618c287cf6dc33, type: 3}
   movementSpeed: 2
   rotateSpeed: 2
   maxDistance: 3
@@ -55,6 +55,14 @@ PrefabInstance:
     - target: {fileID: 634794864659943099, guid: a46435b722f2e42e5b6128bcb2afd05c, type: 3}
       propertyPath: enemy
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 634794864659943099, guid: a46435b722f2e42e5b6128bcb2afd05c, type: 3}
+      propertyPath: maxHpValues.Array.data[1]
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 634794864659943099, guid: a46435b722f2e42e5b6128bcb2afd05c, type: 3}
+      propertyPath: maxHpValues.Array.data[2]
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1489114857453287952, guid: a46435b722f2e42e5b6128bcb2afd05c, type: 3}
       propertyPath: m_Value
@@ -282,7 +290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5379077046792763431, guid: a46435b722f2e42e5b6128bcb2afd05c, type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: Enemy Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5379077046792763482, guid: a46435b722f2e42e5b6128bcb2afd05c, type: 3}
       propertyPath: m_LocalPosition.x

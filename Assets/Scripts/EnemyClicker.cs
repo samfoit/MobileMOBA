@@ -23,8 +23,8 @@ public class EnemyClicker : MonoBehaviour
                 {
                     if (hit.transform.tag == enemyTag)
                     {
-                        Debug.Log("Hit an Enemy");
                         playerController.ActivateAttackPhase();
+                        playerController.enemy = hit.transform.gameObject;
                     }
                 }
             }

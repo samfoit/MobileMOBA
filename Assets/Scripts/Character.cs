@@ -70,13 +70,7 @@ public class Character : MonoBehaviour
         if(currentHp <= 0)
         {
             death = true;
-            if (enemy)
-            {
-                spawner.Respawn();
-            }
-          
             Destroy(gameObject);
-
         }
     }
 

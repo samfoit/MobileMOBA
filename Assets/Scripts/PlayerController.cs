@@ -21,8 +21,6 @@ public class PlayerController : MonoBehaviour
 
     public bool tap, drag, swipe, hold;
 
-    public bool canMove = true;
-
     public static int click = 0;
     public int[] attacks;
     private bool isAttacking = false;
@@ -32,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private Abilities abilities;
 
     [SerializeField] private GameObject Player;
-    [SerializeField] private GameObject enemy;
+    public GameObject enemy;
     [SerializeField] private string enemyTag = "Enemy";
 
     // Start is called before the first frame update
@@ -47,14 +45,14 @@ public class PlayerController : MonoBehaviour
         CheckInput();
 
         // If the input was a tap, player attacks
-        if (tap && canMove)
+        if (tap)
         {
             CheckAttack();
             tap = false;
         }
 
         // If the input as a drag, moves the player
-        if (drag || swipe && canMove)
+        if (drag || swipe)
         {
             if (Input.GetMouseButton(0))
             {
@@ -70,18 +68,19 @@ public class PlayerController : MonoBehaviour
             attack = false;
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) || hold)
         {
+            drag = false;
+            swipe = false;
             animator.SetBool("isRunning", false);
         }
 
+        
         if (chasing && enemy != null)
         {
             AttackPhase(Player.transform.position, enemy.transform.position);
         }
         
-
-
     }
 
     /// <summary>
@@ -97,12 +96,10 @@ public class PlayerController : MonoBehaviour
         }
         if(startPos.y <= 0.2)
         {
-            canMove = false;
+            drag = false;
+            swipe = false;
+            hold = false;
             return;
-        }
-        if(startPos.y > 0.2)
-        {
-            canMove = true;
         }
         if (Input.GetMouseButton(0))
         {
@@ -130,7 +127,6 @@ public class PlayerController : MonoBehaviour
         {
             if (Time.time - startTime < 0.7 && currentPos != startPos)
             {
-                Debug.Log("Swiped!");
                 swipe = true;
                 tap = false;
                 drag = false;
@@ -151,10 +147,6 @@ public class PlayerController : MonoBehaviour
         if (!isAttacking)
         {
             StartCoroutine(Attack());
-        }
-        else
-        {
-            return;
         }
     }
 
@@ -192,6 +184,7 @@ public class PlayerController : MonoBehaviour
         isAttacking = false;
     }
 
+    
     public void ActivateAttackPhase()
     {
         chasing = true;
@@ -211,38 +204,35 @@ public class PlayerController : MonoBehaviour
             CheckAttack();
         }
 
+
         if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                if (Physics.Raycast(ray, out hit, 100.0f))
+            if (Physics.Raycast(ray, out hit, 100.0f))
+            {
+                if (hit.transform != null)
                 {
-                    if (hit.transform != null)
+                    if (hit.transform.tag != enemyTag)
                     {
-                        if (hit.transform.tag != enemyTag)
-                        {
-                            animator.SetBool("isRunning", false);
-                            chasing = false;
-                        }
+                        animator.SetBool("isRunning", false);
+                        chasing = false;
                     }
                 }
             }
-            
         }
-
-
     }
 
     private void MoveTowardsEnemy(Vector3 Player, Vector3 Enemy)
     {
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(Player, Enemy, step);
+        transform.eulerAngles = Vector3.RotateTowards(Player, Enemy, 360f, 1f);
         GetComponent<Animator>().SetBool("isRunning", true);
         transform.LookAt(Enemy);
     }
+    
 
     // Moves the player and animates them in the running animation
     private void MovePlayer()
@@ -261,4 +251,5 @@ public class PlayerController : MonoBehaviour
     {
         return new Vector3(0, Mathf.Atan2(currentPos.x - startPos.x, currentPos.y - startPos.y) * 180 / Mathf.PI, 0);
     }
+    
 }
