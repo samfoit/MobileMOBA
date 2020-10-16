@@ -1,22 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &983867692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4062156055529551233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa753a6540db04cd2853165f7c331407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerLocation: {fileID: 691962740715701076, guid: bae6653ab044545ba8618c287cf6dc33, type: 3}
-  player: {fileID: 203093948839369195, guid: bae6653ab044545ba8618c287cf6dc33, type: 3}
-  movementSpeed: 2
-  rotateSpeed: 2
-  maxDistance: 3
 --- !u!1001 &8284933889403669926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -634,11 +617,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a46435b722f2e42e5b6128bcb2afd05c, type: 3}
---- !u!1 &4062156055529551233 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5379077046792763431, guid: a46435b722f2e42e5b6128bcb2afd05c, type: 3}
-  m_PrefabInstance: {fileID: 8284933889403669926}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6626940002962737972 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2958409380517365394, guid: a46435b722f2e42e5b6128bcb2afd05c, type: 3}

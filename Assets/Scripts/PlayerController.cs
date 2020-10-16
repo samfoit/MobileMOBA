@@ -71,7 +71,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonUp(0) || hold)
         {
             drag = false;
-            swipe = false;
             animator.SetBool("isRunning", false);
         }
 
