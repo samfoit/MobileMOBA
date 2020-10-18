@@ -16,13 +16,14 @@ public class HealthBar : MonoBehaviour
     {
         canvasTransform = GetComponent<RectTransform>();
         stats = GetComponentInParent<Character>();
-        levelText.text = stats.level.ToString();
+        
     }
 
     private void Update()
     {
         canvasTransform.SetPositionAndRotation(new Vector3(enemy.transform.position.x, canvasTransform.position.y,
          canvasTransform.position.z), Quaternion.Euler(-65, 180-enemy.rotation.y, 0));
+         levelText.text = stats.level.ToString();
     }
 
     public void SetHealth(float health)
