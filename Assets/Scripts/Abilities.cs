@@ -5,17 +5,11 @@ using UnityEngine;
 public class Abilities : MonoBehaviour
 
 {
-    public float thrust;
-    public float timer;
+    public float thrust = 20.0f;
+    public float timer = 1.0f;
 
     [SerializeField] PlayerController playerController;
     [SerializeField] private Transform player;
-
-    private void Start()
-    {
-        thrust = 100.0f;
-        timer = 0.1f;
-    }
 
     // Update is called once per frame
     void Update()
@@ -37,7 +31,7 @@ public class Abilities : MonoBehaviour
     {
         player.Translate(Vector3.forward * thrust * Time.deltaTime);
 
-        yield return new WaitForSeconds(timer);
+        yield return new WaitForSeconds(1f);
 
         player.Translate(Vector3.zero);
         playerController.swipe = false;

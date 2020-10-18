@@ -24,7 +24,6 @@ public class EnemySpawner : MonoBehaviour
         if (spawning)
         {
             currentTime -= Time.deltaTime;
-            
             if (currentTime <= 0)
             {
                 Spawn();

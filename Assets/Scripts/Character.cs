@@ -61,9 +61,8 @@ public class Character : MonoBehaviour
     /// Decreases characters health and deletes them if health is less than or equal to 0
     /// </summary>
     /// <param name="damage">Damage amount</param>
-    public virtual void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
-
         currentHp -= damage;
         if (healthBar != null){
             healthBar.SetHealth(currentHp);
@@ -71,7 +70,6 @@ public class Character : MonoBehaviour
         if(currentHp <= 0)
         {
             death = true;
-            spawner.Respawn();
             Destroy(gameObject);
         }
     }
@@ -107,12 +105,5 @@ public class Character : MonoBehaviour
 
             levelGain = false;
         }
-    }
-
-    public void enemyLevel(int levelGain){
-        level = levelGain;
-        bool yes = true;
-        LevelUp(yes);
-
     }
 }

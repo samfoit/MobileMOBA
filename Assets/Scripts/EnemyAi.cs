@@ -7,7 +7,7 @@ public class EnemyAi : MonoBehaviour
     private Animator animator;
     public Transform playerLocation;
     public Character player;
-    public Character enemyStats;
+    private Character enemyStats;
     public float movementSpeed;
     public float rotateSpeed;
     public float maxDistance;
@@ -18,12 +18,7 @@ public class EnemyAi : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
-        enemyStats = GetComponent<Character>();
-        
-    }
-
-    void Start(){
-        createLevel();
+        enemyStats = GetComponentInParent<Character>();
     }
 
     // Update is called once per frame
@@ -66,8 +61,4 @@ public class EnemyAi : MonoBehaviour
         damage = enemyStats.strength;
         player.TakeDamage(damage);
     }
-
-    public void createLevel(){
-        enemyStats.enemyLevel((int)Random.Range(player.level, (player.level + 3)));
-    } 
 }
