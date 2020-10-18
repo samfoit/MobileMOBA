@@ -71,6 +71,7 @@ public class Character : MonoBehaviour
         if(currentHp <= 0)
         {
             death = true;
+            spawner.Respawn();
             Destroy(gameObject);
         }
     }
@@ -106,5 +107,12 @@ public class Character : MonoBehaviour
 
             levelGain = false;
         }
+    }
+
+    public void enemyLevel(int levelGain){
+        level = levelGain;
+        bool yes = true;
+        LevelUp(yes);
+
     }
 }
