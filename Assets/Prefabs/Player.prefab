@@ -160,7 +160,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 10, z: 10.605431}
+  m_Size: {x: 1, y: 1.0000002, z: 10.605431}
   m_Center: {x: 0, y: 5, z: 7.728405}
 --- !u!136 &203093948839369197
 CapsuleCollider:
@@ -207,9 +207,9 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   levelParticles: {fileID: 4124663054272207117}
   spawner: {fileID: 0}
-  player: 1
+  player: 0
   enemy: 0
-  currentHp: 300
+  currentHp: 40
   maxHpValues:
   - 0
   - 100
@@ -226,15 +226,15 @@ MonoBehaviour:
   strengthValues:
   - 0
   - 10
-  - 14
-  - 19
-  - 25
-  - 33
-  - 44
-  - 59
-  - 79
-  - 105
-  - 140
+  - 20
+  - 30
+  - 40
+  - 50
+  - 60
+  - 70
+  - 80
+  - 90
+  - 100
   strength: 100
   currentMp: 50
   maxMpValues:
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6146ec0ca1a4cfabcec80bd4af83bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponCollider: {fileID: 203093948839369191}
+  weaponCollider: {fileID: 0}
 --- !u!114 &203093948839369193
 MonoBehaviour:
   m_ObjectHideFlags: 0
