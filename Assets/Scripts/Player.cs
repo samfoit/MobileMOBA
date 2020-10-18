@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Attached to the player, gives him exp to level him up on the start of the game
@@ -38,8 +39,7 @@ public class Player : Character
         }
         if (currentHp <= 0)
         {
-            death = true;
-            Destroy(gameObject);
+            SceneManager.LoadScene("GameOver");
         }
     }
 

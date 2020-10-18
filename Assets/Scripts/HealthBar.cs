@@ -6,17 +6,16 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-
     public Slider slider;
     public Transform enemy;
     private RectTransform canvasTransform;
     private Character stats;
     public Text levelText;
     private void Start()
+
     {
         canvasTransform = GetComponent<RectTransform>();
         stats = GetComponentInParent<Character>();
-        
     }
 
     private void Update()
@@ -28,14 +27,6 @@ public class HealthBar : MonoBehaviour
 
     public void SetHealth(float health)
     {
-        slider.value = health;
-    }
-
-    public void SetMaxHealth(float health)
-    {
-        slider.maxValue = health;
-        slider.value = health;
-    }
-
-    
+        slider.value = stats.currentHp / stats.maxHp;
+    } 
 }

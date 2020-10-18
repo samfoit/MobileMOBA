@@ -38,7 +38,6 @@ public class EnemyAi : MonoBehaviour
         else {
             animator.SetBool("isRunning", false);
             animator.SetBool("attack", true);
-            
         }
         
         rotateEnemy();
@@ -68,6 +67,11 @@ public class EnemyAi : MonoBehaviour
     }
 
     public void createLevel(){
-        enemyStats.enemyLevel((int)Random.Range(player.level, (player.level + 3)));
+        int level = Random.Range(player.level, (player.level + 3));
+        if (level > 10)
+        {
+            level = 10;
+        }
+        enemyStats.enemyLevel(level);
     } 
 }

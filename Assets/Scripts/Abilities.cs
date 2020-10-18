@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Abilities : MonoBehaviour
-
 {
     public float thrust;
     public float timer;
 
     [SerializeField] PlayerController playerController;
     [SerializeField] private Transform player;
+
 
     private void Start()
     {

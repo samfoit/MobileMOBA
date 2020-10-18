@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            if (Time.time - startTime < 0.7 && currentPos != startPos)
+            if (Time.time - startTime < 0.7 && currentPos != startPos && Vector2.Distance(startPos, currentPos) >= 0.15)
             {
                 swipe = true;
                 tap = false;
@@ -192,6 +192,7 @@ public class PlayerController : MonoBehaviour
     public void AttackPhase(Vector3 Player, Vector3 enemy)
     {
         float distance = Vector3.Distance(Player, enemy);
+        transform.LookAt(enemy);
 
         if (distance > 5.0f)
         {

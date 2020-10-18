@@ -53,8 +53,6 @@ public class Character : MonoBehaviour
         maxMp = maxMpValues[level];
         currentHp = maxHp;
         currentMp = maxMp;
-
-        healthBar.SetMaxHealth(maxHp);
     }
 
     /// <summary>
@@ -101,9 +99,13 @@ public class Character : MonoBehaviour
         if (levelGain)
         {
             maxHp = maxHpValues[level];
+            currentHp = maxHp;
             strength = strengthValues[level];
             maxMp = maxMpValues[level];
+            currentMp = maxMp;
             levelupCounter++;
+            expToGive = level * 5;
+            expToNextLevel = Mathf.RoundToInt((level * level) * 4.5f + 50);
 
             levelGain = false;
         }
@@ -113,6 +115,5 @@ public class Character : MonoBehaviour
         level = levelGain;
         bool yes = true;
         LevelUp(yes);
-
     }
 }
