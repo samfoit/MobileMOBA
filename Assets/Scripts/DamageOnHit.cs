@@ -51,4 +51,23 @@ public class DamageOnHit : MonoBehaviour
             }
         }
     }
+
+    public void DealAbilityDamage(float dashDamage)
+    {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            damage = dashDamage;
+
+            enemies[i].TakeDamage(damage);
+
+            // If the attack kills them, reward the player with exp
+            if (enemies[i].death)
+            {
+                player.gameObject.GetComponent<Character>().GainExp(enemies[i].expToGive);
+                enemies.Remove(enemies[i]);
+                player.chasing = false;
+
+            }
+        }
+    }
 }
