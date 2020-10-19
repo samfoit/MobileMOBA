@@ -21,9 +21,13 @@ public class UIManager : MonoBehaviour
 
     public Animator[] animator;
 
+    public static UIManager instance;
+
     // Start is called before the first frame update
     void Start()
     {
+
+        instance = this;
         // Sets sliders to proper value
         hpSlider.value = playerStats.currentHp / playerStats.maxHp;
         mpSlider.value = playerStats.currentMp / playerStats.maxMp;
@@ -70,5 +74,22 @@ public class UIManager : MonoBehaviour
                 skillButtons[i].GetComponent<SkillButton>().isUpgradable = false;
             }
         }
+    }
+
+    public bool ButtonToCheck(int button)
+    {
+        if (skillButtons[button - 1].GetComponent<SkillButton>().level > 0)
+        {
+            return true;
+
+        } else
+        {
+            return false;
+        }
+    }
+
+    public int ButtonLevel(int button)
+    {
+        return skillButtons[button - 1].GetComponent<SkillButton>().level;
     }
 }

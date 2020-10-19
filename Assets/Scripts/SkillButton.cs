@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class SkillButton : MonoBehaviour
 {
-    private int level = 0;
+    public int level = 0;
     public Image[] levelCounter;
     public bool isUpgradable = false;
     private UIManager UIManager;

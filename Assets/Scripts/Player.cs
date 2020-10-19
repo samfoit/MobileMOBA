@@ -60,4 +60,17 @@ public class Player : Character
             timer = 5f;
         }
     }
+
+    public bool CheckForMana(float manaCost)
+    {
+        if (currentMp >= manaCost)
+        {
+            currentMp -= manaCost;
+            return true;
+
+        } else
+        {
+            return false;
+        }
+    }
 }
