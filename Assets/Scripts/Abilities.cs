@@ -19,7 +19,7 @@ public class Abilities : MonoBehaviour
 
     private void Start()
     {
-        thrust = 100.0f;
+        thrust = 375.0f;
         timer = 0.1f;
         dashCooldown = false;
     }
@@ -36,12 +36,6 @@ public class Abilities : MonoBehaviour
         {
             GroundPound(player);
         }
-
-        if (dashing)
-        {
-            int dashLevel = UIManager.instance.ButtonLevel(1);
-            damageOnHit.DealAbilityDamage(dashDamage[dashLevel]);
-        }
     }
 
     IEnumerator DashAbility(Transform player)
@@ -51,15 +45,15 @@ public class Abilities : MonoBehaviour
             Debug.Log("Dashing");
             player.GetComponent<Player>().TakeMana(dashDamage[UIManager.instance.ButtonLevel(1)] / 4);
             player.Translate(Vector3.forward * thrust * Time.deltaTime);
-            dashing = true;
+            int dashLevel = UIManager.instance.ButtonLevel(1);
+            damageOnHit.DealAbilityDamage(dashDamage[dashLevel]);
+            StartCoroutine(DashCooldown());
 
             yield return new WaitForSeconds(timer);
 
             player.Translate(Vector3.zero);
             dashing = false;
             playerController.swipe = false;
-
-            StartCoroutine(DashCooldown());
         }
     }
 
