@@ -10,7 +10,7 @@ public class Abilities : MonoBehaviour
     public bool dashCooldown;
 
     //Levles:                     1     2    3
-    public float[] dashDamage = { 30f, 50f, 80f };
+    public float[] dashDamage = { 5f, 10f, 15f };
     public DamageOnHit damageOnHit;
 
     [SerializeField] PlayerController playerController;
@@ -27,11 +27,9 @@ public class Abilities : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerController.swipe && !dashCooldown)
+        if (playerController.swipe)
         {
-
             StartCoroutine(DashAbility(player));
-
         }
 
         if (playerController.hold)
@@ -48,8 +46,10 @@ public class Abilities : MonoBehaviour
 
     IEnumerator DashAbility(Transform player)
     {
-        if (UIManager.instance.ButtonToCheck(1) && player.GetComponent<Player>().CheckForMana(dashDamage[UIManager.instance.ButtonLevel(1)]))
+        if (UIManager.instance.ButtonToCheck(1) && player.GetComponent<Player>().CheckForMana(dashDamage[UIManager.instance.ButtonLevel(1)]) && !dashCooldown)
         {
+            Debug.Log("Dashing");
+            player.GetComponent<Player>().TakeMana(dashDamage[UIManager.instance.ButtonLevel(1)] / 4);
             player.Translate(Vector3.forward * thrust * Time.deltaTime);
             dashing = true;
 

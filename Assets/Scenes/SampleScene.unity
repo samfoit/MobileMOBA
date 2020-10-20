@@ -4572,7 +4572,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 203093948839369188, guid: bae6653ab044545ba8618c287cf6dc33, type: 3}
       propertyPath: timer
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 203093948839369188, guid: bae6653ab044545ba8618c287cf6dc33, type: 3}
       propertyPath: thrust
@@ -4582,6 +4582,18 @@ PrefabInstance:
       propertyPath: damageOnHit
       value: 
       objectReference: {fileID: 1682479197}
+    - target: {fileID: 203093948839369188, guid: bae6653ab044545ba8618c287cf6dc33, type: 3}
+      propertyPath: dashDamage.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 203093948839369188, guid: bae6653ab044545ba8618c287cf6dc33, type: 3}
+      propertyPath: dashDamage.Array.data[1]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 203093948839369188, guid: bae6653ab044545ba8618c287cf6dc33, type: 3}
+      propertyPath: dashDamage.Array.data[2]
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 203093948839369191, guid: bae6653ab044545ba8618c287cf6dc33, type: 3}
       propertyPath: m_Size.x
       value: 10

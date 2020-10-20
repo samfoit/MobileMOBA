@@ -65,12 +65,20 @@ public class Player : Character
     {
         if (currentMp >= manaCost)
         {
-            currentMp -= manaCost;
             return true;
 
         } else
         {
             return false;
+        }
+    }
+
+    public void TakeMana(float manaCost)
+    {
+        if (currentMp >= manaCost)
+        {
+            currentMp -= manaCost;
+            return;
         }
     }
 }

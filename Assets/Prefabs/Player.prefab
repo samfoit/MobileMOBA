@@ -190,7 +190,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &203093948839369195
 MonoBehaviour:
@@ -209,7 +209,7 @@ MonoBehaviour:
   spawner: {fileID: 0}
   player: 1
   enemy: 0
-  currentHp: 300
+  currentHp: 100
   maxHpValues:
   - 0
   - 100
@@ -239,16 +239,16 @@ MonoBehaviour:
   currentMp: 50
   maxMpValues:
   - 0
-  - 50
-  - 75
+  - 30
+  - 40
+  - 56
+  - 76
   - 100
-  - 125
-  - 150
-  - 175
-  - 200
-  - 225
-  - 250
-  - 275
+  - 132
+  - 176
+  - 236
+  - 316
+  - 420
   maxMp: 50
   currentExp: 0
   expToNextLevel: 100
@@ -313,7 +313,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrust: 10
-  timer: 1
+  timer: 0.1
+  dashing: 0
+  dashCooldown: 0
+  dashDamage:
+  - 5
+  - 10
+  - 15
+  damageOnHit: {fileID: 203093948839369190}
   playerController: {fileID: 203093948839369196}
   player: {fileID: 691962740715701076}
 --- !u!1 &486681459992314071
