@@ -189,14 +189,14 @@ public class PlayerController : MonoBehaviour
         chasing = true;
     }
     
-    public void AttackPhase(Vector3 Player, Vector3 enemy)
+    public void AttackPhase(Vector3 Player, Vector3 enemyPosition)
     {
-        float distance = Vector3.Distance(Player, enemy);
-        transform.LookAt(enemy);
+        float distance = Vector3.Distance(Player, enemyPosition);
+        transform.LookAt(enemyPosition);
 
         if (distance > 5.0f)
         {
-            MoveTowardsEnemy(Player, enemy);
+            MoveTowardsEnemy(Player, enemyPosition);
         }
         else
         {
@@ -218,6 +218,7 @@ public class PlayerController : MonoBehaviour
                     {
                         animator.SetBool("isRunning", false);
                         chasing = false;
+                        enemy.GetComponent<OutlineActivator>().DeactivateOutline();
                     }
                 }
             }

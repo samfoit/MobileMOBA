@@ -25,6 +25,7 @@ public class EnemyClicker : MonoBehaviour
                     {
                         playerController.ActivateAttackPhase();
                         playerController.enemy = hit.transform.gameObject;
+                        hit.transform.gameObject.GetComponent<OutlineActivator>().ActivateOutline();
                     }
                 }
             }

@@ -42,7 +42,6 @@ public class Abilities : MonoBehaviour
     {
         if (UIManager.instance.ButtonToCheck(1) && player.GetComponent<Player>().CheckForMana(dashDamage[UIManager.instance.ButtonLevel(1)]) && !dashCooldown)
         {
-            Debug.Log("Dashing");
             player.GetComponent<Player>().TakeMana(dashDamage[UIManager.instance.ButtonLevel(1)] / 4);
             player.Translate(Vector3.forward * thrust * Time.deltaTime);
             int dashLevel = UIManager.instance.ButtonLevel(1);
