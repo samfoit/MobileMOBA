@@ -70,4 +70,25 @@ public class DamageOnHit : MonoBehaviour
             }
         }
     }
+
+    public void DealGroundPound(float gpDamage)
+    {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            damage = gpDamage;
+
+            enemies[i].TakeDamage(damage);
+
+            enemies[i].transform.Translate(Vector3.back * 500f * Time.deltaTime);
+
+            // If the attack kills them, reward the player with exp
+            if (enemies[i].death)
+            {
+                player.gameObject.GetComponent<Character>().GainExp(enemies[i].expToGive);
+                enemies.Remove(enemies[i]);
+                player.chasing = false;
+
+            }
+        }
+    }
 }

@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
         if (tap)
         {
             CheckAttack();
-            tap = false;
+            StartCoroutine(TapFalse());
         }
 
         // If the input as a drag, moves the player
@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckAttack()
     {
-        if (!isAttacking)
+        if (!isAttacking && !GetComponent<Abilities>().gp)
         {
             StartCoroutine(Attack());
         }
@@ -174,6 +174,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            GetComponent<Abilities>().CheckGroundPound();
             click = 1;
             attack = "attack1";
             animator.SetTrigger(attack);
@@ -251,6 +252,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 GetInputRotation()
     {
         return new Vector3(0, Mathf.Atan2(currentPos.x - startPos.x, currentPos.y - startPos.y) * 180 / Mathf.PI, 0);
+    }
+
+    IEnumerator TapFalse()
+    {
+        yield return new WaitForSeconds(0.75f);
+        tap = false;
     }
     
 }

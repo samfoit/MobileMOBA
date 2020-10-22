@@ -83579,8 +83579,8 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.31666666
-    functionName: DealDamage
+  - time: 0
+    functionName: StartOfGroundPoundAnimation
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -83592,4 +83592,18 @@ AnimationClip:
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 2
+    messageOptions: 0
+  - time: 0.53333336
+    functionName: GroundPound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.8833333
+    functionName: EndOfGroundPoundAnimation
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
     messageOptions: 0
