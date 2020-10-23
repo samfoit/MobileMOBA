@@ -12,7 +12,7 @@ public class Abilities : MonoBehaviour
     // "gp" stands for groud pound
     // Levels:                  1    2    3
     public float[] gpDamage = { 5f, 10f, 15f };
-    private bool canGP = false;
+    public bool canGP = false;
     private bool gpCooldown;
     public bool gp;
 
@@ -65,19 +65,21 @@ public class Abilities : MonoBehaviour
 
     IEnumerator DashCooldown()
     {
+        UIManager.instance.ButtonCooldown(1);
         dashCooldown = true;
 
         yield return new WaitForSeconds(5);
 
         dashCooldown = false;
-
     }
 
     IEnumerator ActivateGroundPound()
     {
+        UIManager.instance.EnableButton(2);
         canGP = true;
         yield return new WaitForSeconds(0.5f);
         canGP = false;
+        UIManager.instance.DisableButton(2);
     }
 
     public void CheckGroundPound()
@@ -90,7 +92,7 @@ public class Abilities : MonoBehaviour
 
     private void PlayGroundPoundAnimation()
     {
-        if (canGP)
+        if (canGP && !gp)
         {
             GetComponent<Animator>().SetTrigger("groundPound");
             StartCoroutine(GroundPoundCooldown());
@@ -99,6 +101,7 @@ public class Abilities : MonoBehaviour
 
     IEnumerator GroundPoundCooldown()
     {
+        UIManager.instance.ButtonCooldown(2);
         gpCooldown = true;
         yield return new WaitForSeconds(5f);
         gpCooldown = false;
