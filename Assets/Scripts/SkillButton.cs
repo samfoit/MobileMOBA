@@ -11,12 +11,24 @@ public class SkillButton : MonoBehaviour
     public int level = 0;
     public Image[] levelCounter;
     public bool isUpgradable = false;
+    public Image cooldownFill;
     private UIManager UIManager;
+    public bool shouldFade = false;
 
     // Start is called before the first frame update
     void Start()
     {
         UIManager = FindObjectOfType<UIManager>();
+        cooldownFill.fillAmount = 0;
+        shouldFade = false;
+    }
+
+    private void Update()
+    {
+        if (shouldFade)
+        {
+            cooldownFill.fillAmount = Mathf.MoveTowards(cooldownFill.fillAmount, 0, 0.2f * Time.deltaTime);
+        }
     }
 
     public void OnClick()
@@ -32,6 +44,7 @@ public class SkillButton : MonoBehaviour
             if (UIManager.playerStats.levelupCounter <= 0)
             {
                 UIManager.playerStats.levelGain = false;
+                UIManager.instance.DisableAllButtons();
             }
         }
     }

@@ -174,7 +174,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            GetComponent<Abilities>().CheckGroundPound();
             click = 1;
             attack = "attack1";
             animator.SetTrigger(attack);

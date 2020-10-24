@@ -26,6 +26,11 @@ public class Player : Character
             RegenHealth();
         }
 
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            GainExp(100);
+        }
+
     }
 
     public override void TakeDamage(float damage)
