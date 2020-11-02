@@ -85,7 +85,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 983867692, guid: a46435b722f2e42e5b6128bcb2afd05c, type: 3}
       propertyPath: followDist
-      value: 25
+      value: 999999
       objectReference: {fileID: 0}
     - target: {fileID: 634794864659943099, guid: a46435b722f2e42e5b6128bcb2afd05c, type: 3}
       propertyPath: enemy
