@@ -19,6 +19,11 @@ public class Abilities : MonoBehaviour
     //Levels:                     1     2    3
     public float[] dashDamage = { 5f, 10f, 15f };
     public DamageOnHit damageOnHit;
+    public AOEDamage aoeDamage;
+
+    private bool AOECooldown;
+    //Levels:                     1    2    3
+    public float[] AOEDamage = { 10f, 20f, 30f };
 
     [SerializeField] PlayerController playerController;
     [SerializeField] private Transform player;
@@ -42,6 +47,11 @@ public class Abilities : MonoBehaviour
         if (canGP && playerController.tap)
         {
             PlayGroundPoundAnimation();
+        }
+
+        if (playerController.hold)
+        {
+
         }
     }
 
@@ -123,5 +133,24 @@ public class Abilities : MonoBehaviour
         player.GetComponent<Player>().TakeMana(gpDamage[UIManager.instance.ButtonLevel(2)] / 2);
     }
 
+    private void AOEAbility()
+    {
+        if (UIManager.instance.ButtonToCheck(3) && player.GetComponent<Player>().CheckForMana(AOEDamage[UIManager.instance.ButtonLevel(3)]) && !AOECooldown)
+        {
+            player.GetComponent<Player>().TakeMana(AOEDamage[UIManager.instance.ButtonLevel(1)] / 2);
+            aoeDamage.DealAOEDamage(AOEDamage[UIManager.instance.ButtonLevel(3)]);
+            StartCoroutine(StartAOECooldown());
+        }
+    }
+
+    IEnumerator StartAOECooldown()
+    {
+        UIManager.instance.ButtonCooldown(3);
+        AOECooldown = true;
+
+        yield return new WaitForSeconds(10);
+
+        AOECooldown = false;
+    }
 }
 
