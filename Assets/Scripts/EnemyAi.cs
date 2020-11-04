@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using System.Diagnostics;
 
 public class EnemyAi : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class EnemyAi : MonoBehaviour
     public float rotateSpeed;
     public float maxDistance;
     private float damage;
+    public float followDist;
     
 
     // Start is called before the first frame update
@@ -30,7 +32,9 @@ public class EnemyAi : MonoBehaviour
     void Update()
     {
         float dist = checkDist();
-        if (dist > maxDistance)
+        UnityEngine.Debug.Log(dist);
+        if (dist < followDist) {
+            if (dist > maxDistance)
         {
            moveEnemy();   
            animator.SetBool("attack", false);
@@ -39,6 +43,8 @@ public class EnemyAi : MonoBehaviour
             animator.SetBool("isRunning", false);
             animator.SetBool("attack", true);
         }
+        }
+        
         
         rotateEnemy();
     }

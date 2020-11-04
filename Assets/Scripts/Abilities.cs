@@ -31,7 +31,7 @@ public class Abilities : MonoBehaviour
 
     private void Start()
     {
-        thrust = 375.0f;
+        thrust = 400.0f;
         timer = 0.1f;
         dashCooldown = false;
     }

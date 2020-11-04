@@ -82,7 +82,6 @@ public class UIManager : MonoBehaviour
         if (skillButtons[button - 1].GetComponent<SkillButton>().level > 0)
         {
             return true;
-
         } else
         {
             return false;
@@ -91,7 +90,8 @@ public class UIManager : MonoBehaviour
 
     public int ButtonLevel(int button)
     {
-        return skillButtons[button - 1].GetComponent<SkillButton>().level;
+        int i = skillButtons[button - 1].GetComponent<SkillButton>().level;
+        return i - 1;
     }
 
     private void EnableAllButtons()
