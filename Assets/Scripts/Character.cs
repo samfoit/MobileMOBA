@@ -65,6 +65,7 @@ public class Character : MonoBehaviour
         currentHp -= damage;
         if (healthBar != null){
             healthBar.SetHealth(currentHp);
+            healthBar.DamagePopup(damage);
         }
         if(currentHp <= 0)
         {

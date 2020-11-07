@@ -6,16 +6,19 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
+    private Animator animator;
     public Slider slider;
     public Transform enemy;
     private RectTransform canvasTransform;
     private Character stats;
     public Text levelText;
+    public Text damageText;
     private void Start()
 
     {
         canvasTransform = GetComponent<RectTransform>();
         stats = GetComponentInParent<Character>();
+        StopPopup();
     }
 
     private void Update()
@@ -29,4 +32,17 @@ public class HealthBar : MonoBehaviour
     {
         slider.value = stats.currentHp / stats.maxHp;
     } 
+
+    public void DamagePopup(float damage)
+    {
+        damageText.text = "-" + damage.ToString();
+        damageText.enabled = true;
+        GetComponent<Animator>().SetBool("DamageText", true);
+    }
+
+    public void StopPopup()
+    {
+        GetComponent<Animator>().SetBool("DamageText", false);
+        damageText.enabled = false;
+    }
 }

@@ -316,11 +316,22 @@ MonoBehaviour:
   timer: 0.1
   dashing: 0
   dashCooldown: 0
+  gpDamage:
+  - 5
+  - 10
+  - 15
+  canGP: 0
+  gp: 0
   dashDamage:
   - 5
   - 10
   - 15
   damageOnHit: {fileID: 203093948839369190}
+  aoeDamage: {fileID: 0}
+  AOEDamage:
+  - 10
+  - 20
+  - 30
   playerController: {fileID: 203093948839369196}
   player: {fileID: 691962740715701076}
 --- !u!1 &486681459992314071
