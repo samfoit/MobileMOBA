@@ -25,6 +25,11 @@ public class EnemyClicker : MonoBehaviour
                     {
                         playerController.ActivateAttackPhase();
                         playerController.enemy = hit.transform.gameObject;
+                        OutlineActivator[] outlineActivators = FindObjectsOfType<OutlineActivator>();
+                        for (int i = 0; i < outlineActivators.Length; i++)
+                        {
+                            outlineActivators[i].DeactivateOutline();
+                        }
                         hit.transform.gameObject.GetComponent<OutlineActivator>().ActivateOutline();
                     }
                 }

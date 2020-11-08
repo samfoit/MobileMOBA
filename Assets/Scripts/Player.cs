@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 /// Attached to the player, gives him exp to level him up on the start of the game
 /// </summary>
 public class Player : Character
-
 {
     private static float lifeTime = 5.0f;
     private float timer = lifeTime;
@@ -50,24 +49,42 @@ public class Player : Character
 
     private void RegenHealth()
     {
-        if (currentHp != maxHp)
+        if (currentHp < maxHp)
         {
             currentHp += 1;
         }
 
-        if (currentMp != maxMp)
+        if (currentMp < maxMp)
         {
             currentMp += 1;
         }
 
-        if (currentHp == maxHp && currentMp == maxMp)
+        if (currentHp >= maxHp && currentMp >= maxMp)
         {
             timer = 5f;
         }
     }
 
-    public bool CheckForMana(float manaCost)
+    public bool CheckForMana(int buttonLevel)
     {
+        int manaCost = 0;
+        switch (buttonLevel)
+        {
+            case 1:
+                manaCost = Mathf.RoundToInt(maxMp / 3);
+                break;
+            case 2:
+                manaCost = Mathf.RoundToInt(maxMp / 4);
+                break;
+            case 3:
+                manaCost = Mathf.RoundToInt(maxMp / 5);
+                break;
+            default:
+                manaCost = 100;
+                Debug.LogError("button level for checkMana is wrong");
+                break;
+        }
+
         if (currentMp >= manaCost)
         {
             return true;
@@ -78,8 +95,27 @@ public class Player : Character
         }
     }
 
-    public void TakeMana(float manaCost)
+    public void TakeMana(int buttonLevel)
     {
+        int manaCost = 0;
+
+        switch (buttonLevel)
+        {
+            case 1:
+                manaCost = Mathf.RoundToInt(maxMp / 3);
+                break;
+            case 2:
+                manaCost = Mathf.RoundToInt(maxMp / 4);
+                break;
+            case 3:
+                manaCost = Mathf.RoundToInt(maxMp / 5);
+                break;
+            default:
+                manaCost = 100;
+                Debug.LogError("button level for checkMana is wrong");
+                break;
+        }
+
         if (currentMp >= manaCost)
         {
             currentMp -= manaCost;

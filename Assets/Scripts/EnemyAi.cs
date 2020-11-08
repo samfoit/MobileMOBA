@@ -32,7 +32,6 @@ public class EnemyAi : MonoBehaviour
     void Update()
     {
         float dist = checkDist();
-        UnityEngine.Debug.Log(dist);
         if (dist < followDist) {
             if (dist > maxDistance)
         {

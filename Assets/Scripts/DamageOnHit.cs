@@ -14,10 +14,24 @@ public class DamageOnHit : MonoBehaviour
     
     public List<Character> enemies;
 
+    //Levels:                     1   2  3   4    5    6    7    8    9   10
+    public int[] enemyHealth = { 30, 40, 56, 76, 100, 132, 176, 236, 316, 420 };
+
     private void Start()
     {
         // Finds player stats so we know how much damage to do
         playerStats = GetComponentInParent<Character>();
+    }
+
+    private void Update()
+    {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            if (enemies[i] == null)
+            {
+                enemies.Remove(enemies[i]);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,7 +48,6 @@ public class DamageOnHit : MonoBehaviour
 
     public void DealDamage()
     {
-
         for (int i = 0; i < enemies.Count; i++)
         {
             damage = playerStats.strength;
@@ -52,11 +65,31 @@ public class DamageOnHit : MonoBehaviour
         }
     }
 
-    public void DealAbilityDamage(float dashDamage)
+    public void DealAbilityDamage(int playerLevel, int skillButtonLevel)
     {
+        int levelButtonMultiplier = skillButtonLevel;
+        float divideBy;
+
+        switch (levelButtonMultiplier)
+        {
+            case 1:
+                divideBy = 5f;
+                break;
+            case 2:
+                divideBy = 4f;
+                break;
+            case 3:
+                divideBy = 3f;
+                break;
+            default:
+                divideBy = 1f;
+                Debug.LogError("buttonLevelWrong");
+                break;
+        }
+
         for (int i = 0; i < enemies.Count; i++)
         {
-            damage = dashDamage;
+            damage = Mathf.RoundToInt(enemyHealth[playerLevel] / divideBy);
 
             enemies[i].TakeDamage(damage);
 
@@ -66,16 +99,35 @@ public class DamageOnHit : MonoBehaviour
                 player.gameObject.GetComponent<Character>().GainExp(enemies[i].expToGive);
                 enemies.Remove(enemies[i]);
                 player.chasing = false;
-
             }
         }
     }
 
-    public void DealGroundPound(float gpDamage)
+    public void DealGroundPound(int playerLevel, int skillButtonLevel)
     {
+        int levelButtonMultiplier = skillButtonLevel;
+        float divideBy;
+
+        switch (levelButtonMultiplier)
+        {
+            case 1:
+                divideBy = 5f;
+                break;
+            case 2:
+                divideBy = 4f;
+                break;
+            case 3:
+                divideBy = 3f;
+                break;
+            default:
+                divideBy = 1f;
+                Debug.LogError("buttonLevelWrong");
+                break;
+        }
+
         for (int i = 0; i < enemies.Count; i++)
         {
-            damage = gpDamage;
+            damage = Mathf.RoundToInt(enemyHealth[playerLevel] / divideBy);
 
             enemies[i].TakeDamage(damage);
 

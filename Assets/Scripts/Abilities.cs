@@ -10,30 +10,30 @@ public class Abilities : MonoBehaviour
     public bool dashCooldown;
 
     // "gp" stands for groud pound
-    // Levels:                  1    2    3
-    public float[] gpDamage = { 5f, 10f, 15f };
     public bool canGP = false;
     private bool gpCooldown;
     public bool gp;
 
-    //Levels:                     1     2    3
-    public float[] dashDamage = { 5f, 10f, 15f };
     public DamageOnHit damageOnHit;
     public AOEDamage aoeDamage;
 
     private bool AOECooldown;
-    //Levels:                     1    2    3
-    public float[] AOEDamage = { 10f, 20f, 30f };
 
     [SerializeField] PlayerController playerController;
     [SerializeField] private Transform player;
 
+    private Animator animator;
+
+    public GameObject aoeCollider;
+    private Player playerStats;
 
     private void Start()
     {
-        thrust = 400.0f;
+        playerStats = GetComponent<Player>();
+        thrust = 600.0f;
         timer = 0.1f;
         dashCooldown = false;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -51,18 +51,18 @@ public class Abilities : MonoBehaviour
 
         if (playerController.hold)
         {
-
+            AOEAbility();
         }
     }
 
     IEnumerator DashAbility(Transform player)
     {
-        if (UIManager.instance.ButtonToCheck(1) && player.GetComponent<Player>().CheckForMana(dashDamage[UIManager.instance.ButtonLevel(1)]) && !dashCooldown)
+        if (UIManager.instance.ButtonToCheck(1) && player.GetComponent<Player>().CheckForMana(UIManager.instance.ButtonLevel(1)) && !dashCooldown)
         {
-            player.GetComponent<Player>().TakeMana(dashDamage[UIManager.instance.ButtonLevel(1)] / 2);
+            animator.SetTrigger("dash");
+            player.GetComponent<Player>().TakeMana(UIManager.instance.ButtonLevel(1));
             player.Translate(Vector3.forward * thrust * Time.deltaTime);
-            int dashLevel = UIManager.instance.ButtonLevel(1);
-            damageOnHit.DealAbilityDamage(dashDamage[dashLevel]);
+            damageOnHit.DealAbilityDamage(playerStats.level, UIManager.instance.ButtonLevel(1));
             StartCoroutine(DashCooldown());
 
             yield return new WaitForSeconds(timer);
@@ -129,16 +129,16 @@ public class Abilities : MonoBehaviour
 
     private void GroundPound()
     {
-        damageOnHit.DealGroundPound(gpDamage[UIManager.instance.ButtonLevel(2)]);
-        player.GetComponent<Player>().TakeMana(gpDamage[UIManager.instance.ButtonLevel(2)] / 2);
+        damageOnHit.DealGroundPound(playerStats.level, UIManager.instance.ButtonLevel(2));
+        player.GetComponent<Player>().TakeMana(UIManager.instance.ButtonLevel(2));
     }
 
     private void AOEAbility()
     {
-        if (UIManager.instance.ButtonToCheck(3) && player.GetComponent<Player>().CheckForMana(AOEDamage[UIManager.instance.ButtonLevel(3)]) && !AOECooldown)
+        if (UIManager.instance.ButtonToCheck(3) && player.GetComponent<Player>().CheckForMana(UIManager.instance.ButtonLevel(3)) && !AOECooldown)
         {
-            player.GetComponent<Player>().TakeMana(AOEDamage[UIManager.instance.ButtonLevel(1)] / 2);
-            aoeDamage.DealAOEDamage(AOEDamage[UIManager.instance.ButtonLevel(3)]);
+            animator.SetTrigger("aoe");
+            player.GetComponent<Player>().TakeMana(UIManager.instance.ButtonLevel(3));
             StartCoroutine(StartAOECooldown());
         }
     }
@@ -151,6 +151,21 @@ public class Abilities : MonoBehaviour
         yield return new WaitForSeconds(10);
 
         AOECooldown = false;
+    }
+
+    public void DealAOEDamage()
+    {
+        aoeDamage.DealAOEDamage(playerStats.level, UIManager.instance.ButtonLevel(3));
+    }
+
+    public void ActivateAOECollider()
+    {
+        aoeCollider.SetActive(true);
+    }
+
+    public void DeActivateAOECollider()
+    {
+        aoeCollider.SetActive(false);
     }
 }
 

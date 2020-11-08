@@ -13,8 +13,8 @@ public class HealthBar : MonoBehaviour
     private Character stats;
     public Text levelText;
     public Text damageText;
-    private void Start()
 
+    private void Start()
     {
         canvasTransform = GetComponent<RectTransform>();
         stats = GetComponentInParent<Character>();
@@ -37,7 +37,10 @@ public class HealthBar : MonoBehaviour
     {
         damageText.text = "-" + damage.ToString();
         damageText.enabled = true;
-        GetComponent<Animator>().SetBool("DamageText", true);
+        if (GetComponent<Animator>())
+        {
+            GetComponent<Animator>().SetBool("DamageText", true);
+        }
     }
 
     public void StopPopup()

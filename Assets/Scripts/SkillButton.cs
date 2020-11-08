@@ -15,6 +15,8 @@ public class SkillButton : MonoBehaviour
     private UIManager UIManager;
     public bool shouldFade = false;
 
+    public bool isAwakening;
+
     // Start is called before the first frame update
     void Start()
     {

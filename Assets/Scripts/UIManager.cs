@@ -54,15 +54,8 @@ public class UIManager : MonoBehaviour
         // Checks if level gain bool is true on player stats
         if (playerStats.levelupCounter > 0)
         {
-            
-            // Turns every skill button green and allows you to level them up
-            for (int i = 0; i < skillButtons.Length; i++)
-            {
-                EnableAllButtons();
-                levelUpAni[i].SetActive(true);
-                animator[i].SetBool("levelBool", true);
-                skillButtons[i].GetComponent<SkillButton>().isUpgradable = true;
-            }
+            // Turns Every Skill button green
+            EnableAllButtons();
         }
         // If player hasn't leveled up buttons should look normal
         if (!playerStats.levelGain)
@@ -91,14 +84,25 @@ public class UIManager : MonoBehaviour
     public int ButtonLevel(int button)
     {
         int i = skillButtons[button - 1].GetComponent<SkillButton>().level;
-        return i - 1;
+        return i;
     }
 
     private void EnableAllButtons()
     {
         for (int i = 0; i < skillButtons.Length; i++)
         {
-            skillButtons[i].GetComponent<Button>().interactable = true;
+            if (skillButtons[i].GetComponent<SkillButton>().isAwakening && playerStats.level < 6)
+            {
+                skillButtons[i].GetComponent<Button>().interactable = false;
+                levelUpAni[i].SetActive(false);
+            }
+            else
+            {
+                skillButtons[i].GetComponent<Button>().interactable = true;
+                levelUpAni[i].SetActive(true);
+                animator[i].SetBool("levelBool", true);
+                skillButtons[i].GetComponent<SkillButton>().isUpgradable = true;
+            }
         }
     }
 
