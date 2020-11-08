@@ -63,7 +63,7 @@ public class Character : MonoBehaviour
     {
 
         currentHp -= damage;
-        if (healthBar != null){
+        if (enemy){
             healthBar.SetHealth(currentHp);
             healthBar.DamagePopup(damage);
         }
@@ -83,6 +83,11 @@ public class Character : MonoBehaviour
     public void GainExp(float expToGain)
     {
         currentExp += expToGain;
+        if (player)
+        {
+            healthBar.EXPopup(expToGain);
+        }
+        
 
         if(currentExp >= expToNextLevel && level < 10)
         {
