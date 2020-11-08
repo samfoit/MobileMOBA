@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Updates any UI components that change for instance the players health and mana bar
@@ -91,7 +92,7 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < skillButtons.Length; i++)
         {
-            if (skillButtons[i].GetComponent<SkillButton>().isAwakening && playerStats.level < 6)
+            if (skillButtons[i].GetComponent<SkillButton>().isAwakening && playerStats.level < 10)
             {
                 skillButtons[i].GetComponent<Button>().interactable = false;
                 levelUpAni[i].SetActive(false);
@@ -156,5 +157,10 @@ public class UIManager : MonoBehaviour
     public void DisableButton(int button)
     {
         skillButtons[button - 1].GetComponent<Button>().interactable = false;
+    }
+
+    public void OnWin()
+    {
+        SceneManager.LoadScene("Win");
     }
 }
