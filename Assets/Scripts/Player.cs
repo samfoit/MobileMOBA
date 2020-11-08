@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Attached to the player, gives him exp to level him up on the start of the game
@@ -10,6 +11,7 @@ public class Player : Character
 {
     private static float lifeTime = 5.0f;
     private float timer = lifeTime;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,8 @@ public class Player : Character
         {
             GainExp(100);
         }
+
+       
 
     }
 
@@ -122,4 +126,6 @@ public class Player : Character
             return;
         }
     }
+
+    
 }
