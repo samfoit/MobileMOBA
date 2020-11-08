@@ -21,16 +21,10 @@ public class HealthBar : MonoBehaviour
     {
         canvasTransform = GetComponent<RectTransform>();
         stats = GetComponentInParent<Character>();
-        if (isPlayer)
-        {
-            
-        }
-        else
+        if (!isPlayer)
         {
             StopPopup();
         }
-        
-
     }
 
     private void Update()
