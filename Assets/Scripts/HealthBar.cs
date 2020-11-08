@@ -57,13 +57,13 @@ public class HealthBar : MonoBehaviour
         damageText.enabled = true;
         if (GetComponent<Animator>())
         {
-            GetComponent<Animator>().SetBool("DamageText", true);
+            GetComponent<Animator>().SetTrigger("DamageText");
         }
     }
 
     public void StopPopup()
     {
-        GetComponent<Animator>().SetBool("DamageText", false);
+        
         damageText.enabled = false;
     }
 
@@ -71,12 +71,12 @@ public class HealthBar : MonoBehaviour
     {
         expText.text = "+" + exp.ToString();
         expText.enabled = true;
-        GetComponent<Animator>().SetBool("ExpPopup", true);
+        GetComponent<Animator>().SetTrigger("ExpPopup");
     }
 
     public void stopExpPopup()
     {
-        GetComponent<Animator>().SetBool("ExpPopup", false);
+        
         expText.enabled = false;
     }
 
