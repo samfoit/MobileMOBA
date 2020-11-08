@@ -18,8 +18,6 @@ public class HealthBar : MonoBehaviour
 
 
     private void Start()
-
-    private void Start()
     {
         canvasTransform = GetComponent<RectTransform>();
         stats = GetComponentInParent<Character>();
