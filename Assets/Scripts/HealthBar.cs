@@ -63,7 +63,6 @@ public class HealthBar : MonoBehaviour
 
     public void StopPopup()
     {
-        
         damageText.enabled = false;
     }
 
@@ -76,7 +75,6 @@ public class HealthBar : MonoBehaviour
 
     public void stopExpPopup()
     {
-        
         expText.enabled = false;
     }
 
