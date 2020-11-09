@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour
             hold = false;
             return;
         }
+        
         if (Input.GetMouseButton(0))
         {
             currentPos = Camera.main.ScreenToViewportPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
@@ -137,6 +138,13 @@ public class PlayerController : MonoBehaviour
                 drag = false;
                 swipe = false;
                 hold = false;
+            }
+            else if (Time.time - startTime > MAX_START_TIME && currentPos == startPos)
+            {
+                hold = true;
+                drag = false;
+                tap = false;
+                swipe = false;
             }
         }
     }

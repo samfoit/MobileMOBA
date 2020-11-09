@@ -59,8 +59,6 @@ public class DamageOnHit : MonoBehaviour
             {
                 player.gameObject.GetComponent<Character>().GainExp(enemies[i].expToGive);
                 enemies.Remove(enemies[i]);
-                player.chasing = false;
-
             }
         }
     }
